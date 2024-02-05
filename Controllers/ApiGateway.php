@@ -84,7 +84,14 @@ class ApiGateway
             $routes = $routes[0];
             Memcache::getInstance()->set($path, $routes);
         }
-        $echoMicroserviceResponse = $this->forwardRequest($method, $routes->ip . $path, $data, $authorization, $php_auth_user, $php_auth_pw);
+        $echoMicroserviceResponse = $this->forwardRequest(
+            $method,
+            $routes->ip . $path,
+            $data,
+            $authorization,
+            $php_auth_user,
+            $php_auth_pw
+        );
         return $echoMicroserviceResponse;
     }
 
@@ -107,10 +114,19 @@ class ApiGateway
     ) {
         $client = new Client();
         try {
-            $response = $client->request($method, $url, [
-                'headers' => ['Content-Type' => 'application/json', "Authorization" => $authorization, "PHP_AUTH_USER" => $php_auth_user, "PHP_AUTH_PW" => $php_auth_pw],
-                'json' => $data,
-            ]);
+            $response = $client->request(
+                $method,
+                $url,
+                [
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'Authorization' => $authorization,
+                        'PHP_AUTH_USER' => $php_auth_user,
+                        'PHP_AUTH_PW' => $php_auth_pw,
+                    ],
+                    'json' => $data,
+                ]
+            );
             $this->status = $response != null ? $response->getStatusCode() : '0';
             return json_decode($response->getBody(), true);
         } catch (\GuzzleHttp\Exception\RequestException $e) {

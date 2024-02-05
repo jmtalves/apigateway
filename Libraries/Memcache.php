@@ -29,11 +29,10 @@ class Memcache
 
     /**
      * get Instance
-     * @return Memcached 
+     * @return Memcached
      */
-    public static function getInstance(){
+    public static function getInstance()
+    {
         return self::$memcached;
     }
-
-
 }

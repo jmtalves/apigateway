@@ -11,7 +11,6 @@ namespace Libraries;
  */
 class Request
 {
-
     /**
      * getPostParams
      *
