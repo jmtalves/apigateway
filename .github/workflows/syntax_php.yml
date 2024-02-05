@@ -1,0 +1,28 @@
+name: PHP Syntax Check
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  syntax-check:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2.11'
+
+    - name: Install Composer dependencies
+      run: composer install
+
+    - name: Install phpstan
+      run: composer global require "phpstan/phpstan=*"
+
+    - name: Run PHPStan
+      run: ~/.composer/vendor/bin/phpstan analyse --level=4 --no-progress Controllers/* Libraries/* Models/* tests/* autoload.php index.php index.php
