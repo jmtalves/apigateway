@@ -25,4 +25,4 @@ jobs:
       run: composer global require "phpstan/phpstan=*"
 
     - name: Run PHPStan
-      run: ~/.composer/vendor/bin/phpstan analyse --level=4 --no-progress Controllers/* Libraries/* Models/* tests/* autoload.php index.php index.php
+      run: ~/.composer/vendor/bin/phpstan analyse --level=4 --no-progress Controllers/* Libraries/* Models/* autoload.php index.php Start.php

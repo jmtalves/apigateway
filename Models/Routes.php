@@ -57,8 +57,12 @@ class Routes
      */
     public static function findLast(string $columns = "*", array $filters = [])
     {
-        $sql = " SELECT " . $columns . " FROM routes WHERE status=:status and :route LIKE CONCAT(route, '%') ORDER BY LENGTH(route) DESC limit 1";
-        
+        $sql = "SELECT $columns
+        FROM routes
+        WHERE status = :status
+        AND :route LIKE CONCAT(route, '%')
+        ORDER BY LENGTH(route) DESC
+        LIMIT 1";
         return Database::getResults($sql, $filters);
     }
 }

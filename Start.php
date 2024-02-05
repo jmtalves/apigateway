@@ -14,7 +14,6 @@ use Libraries\Memcache;
  */
 class Start
 {
-
     /**
      * init
      *
