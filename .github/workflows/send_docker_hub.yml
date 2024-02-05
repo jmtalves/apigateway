@@ -35,22 +35,22 @@ jobs:
 
       - name: Tag and Push Memcached image
         run: |
-          docker tag memcached:alpine a6573/tp-scc:memcached
-          docker push a6573/tp-scc:memcached
+          docker tag memcached:alpine jmtalves/api_gateway:memcached
+          docker push jmtalves/api_gateway:memcached
         working-directory: ./
 
       - name: Tag and Push Nginx image
         run: |
-          docker tag nginx:alpine a6573/tp-scc:nginx
-          docker build  -f ./phpdocker/nginx/Dockerfile -t a6573/tp-scc:nginx .
-          docker push a6573/tp-scc:nginx
+          docker tag nginx:alpine jmtalves/api_gateway:nginx
+          docker build  -f ./phpdocker/nginx/Dockerfile -t jmtalves/api_gateway:nginx .
+          docker push jmtalves/api_gateway:nginx
         working-directory: ./
 
 
       - name: Tag and Push PHP-FPM image
         working-directory: ./
         run: |
-          docker tag cloud-ipca_php-fpm:latest a6573/tp-scc:php-fpm
-          docker build  -f ./phpdocker/php-fpm/Dockerfile -t a6573/tp-scc:php-fpm . 
-          docker push a6573/tp-scc:php-fpm
+          docker tag jmtalves_php-fpm:latest jmtalves/api_gateway:php-fpm
+          docker build  -f ./phpdocker/php-fpm/Dockerfile -t jmtalves/api_gateway:php-fpm . 
+          docker push jmtalves/api_gateway:php-fpm
         
